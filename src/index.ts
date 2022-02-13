@@ -13,6 +13,7 @@ const GitHubStrategy = require("passport-github2")
 dotenv.config()
 
 const app = express()
+const clientURI = "https://competent-mcnulty-4322db.netlify.app/"
 
 mongoose.connect(
   `${process.env.START_MONGODB}${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}${process.env.END_MONGODB}`,
@@ -27,7 +28,7 @@ mongoose.connect(
 
 // Middleware
 app.use(express.json())
-app.use(cors({ origin: "http://localhost:3000", credentials: true }))
+app.use(cors({ origin: clientURI, credentials: true }))
 
 app.set("trust proxy", true)
 
@@ -137,21 +138,21 @@ app.get("/auth/google", passport.authenticate("google", { scope: ["profile"] }))
 
 app.get("/auth/google/callback", passport.authenticate("google", { failureRedirect: "/login" }), function (req, res) {
   // Successful authentication, redirect home.
-  res.redirect("http://localhost:3000")
+  res.redirect(clientURI)
 })
 
 app.get("/auth/twitter", passport.authenticate("twitter"))
 
 app.get("/auth/twitter/callback", passport.authenticate("twitter", { failureRedirect: "/login" }), function (req, res) {
   // Successful authentication, redirect home.
-  res.redirect("http://localhost:3000")
+  res.redirect(clientURI)
 })
 
 app.get("/auth/github", passport.authenticate("github", { scope: ["user:email"] }))
 
 app.get("/auth/github/callback", passport.authenticate("github", { failureRedirect: "/login" }), function (req, res) {
   // Successful authentication, redirect home.
-  res.redirect("http://localhost:3000")
+  res.redirect(clientURI)
 })
 
 app.get("/", (req, res) => {
