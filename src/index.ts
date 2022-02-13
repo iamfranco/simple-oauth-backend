@@ -159,8 +159,8 @@ app.get("/", (req, res) => {
 })
 
 app.get("/getuser", (req, res) => {
-  // if (req.user) return res.send(req.user)
-  return res.json(req)
+  if (!req.user) return res.send("No user")
+  res.send(req.user)
 })
 
 app.get("/auth/logout", (req, res) => {
