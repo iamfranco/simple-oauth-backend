@@ -159,7 +159,7 @@ app.get("/", (req, res) => {
 })
 
 app.get("/getuser", (req, res) => {
-  if (req.user) return res.send(req.user)
+  // if (req.user) return res.send(req.user)
   return res.json(req)
 })
 
