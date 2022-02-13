@@ -13,7 +13,7 @@ const GitHubStrategy = require("passport-github2")
 dotenv.config()
 
 const app = express()
-const clientURI = "https://competent-mcnulty-4322db.netlify.app/"
+const clientURI = "https://competent-mcnulty-4322db.netlify.app"
 
 mongoose.connect(
   `${process.env.START_MONGODB}${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}${process.env.END_MONGODB}`,
