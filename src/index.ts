@@ -27,8 +27,7 @@ mongoose.connect(
 
 // Middleware
 app.use(express.json())
-// app.use(cors({ origin: "http://localhost:3000", credentials: true }))
-app.use(cors())
+app.use(cors({ origin: "http://localhost:3000", credentials: true }))
 
 app.set("trust proxy", 1)
 
@@ -160,7 +159,8 @@ app.get("/", (req, res) => {
 })
 
 app.get("/getuser", (req, res) => {
-  res.send(req.user)
+  if (req.user) return res.send(req.user)
+  return res.send(req)
 })
 
 app.get("/auth/logout", (req, res) => {
