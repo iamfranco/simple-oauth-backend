@@ -28,11 +28,19 @@ mongoose.connect(
 // Middleware
 app.use(express.json())
 app.use(cors({ origin: "http://localhost:3000", credentials: true }))
+
+app.set("trust proxy", 1)
+
 app.use(
   session({
     secret: "secretcode",
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    cookie: {
+      sameSite: "none",
+      secure: true,
+      maxAge: 7 * 24 * 60 * 60 * 1000 // One week
+    }
   })
 )
 app.use(passport.initialize())
