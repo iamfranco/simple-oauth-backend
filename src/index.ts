@@ -160,7 +160,7 @@ app.get("/", (req, res) => {
 
 app.get("/getuser", (req, res) => {
   if (req.user) return res.send(req.user)
-  return res.send(req)
+  return res.json(req)
 })
 
 app.get("/auth/logout", (req, res) => {
